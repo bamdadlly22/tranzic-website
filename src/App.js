@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Hero from "./components/Hero";
+import Team from "./components/Team";
 
 function App() {
+  const [reverseOrder, setReverseOrder] = useState(false);
+  const team = <Team reverseOrder={reverseOrder} setReverseOrder={setReverseOrder} />
+  const hero = <Hero reverseOrder={reverseOrder}  setReverseOrder={setReverseOrder}/>
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {reverseOrder ? (
+        <section>
+          {team}
+          {hero}
+        </section>
+      ) : (
+        <section>
+          {hero}
+          {team}
+        </section>
+      )}
+    </>
   );
 }
 
